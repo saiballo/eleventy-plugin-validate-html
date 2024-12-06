@@ -11,7 +11,7 @@
 	],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/username/repo-name/issues"
+		"url": "https://github.com/saiballo/eleventy-plugin-validate-html"
 	},
 	"engines": {
 		"node": ">=16"
@@ -29,6 +29,6 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/matt-auckland/eleventy-plugin-html-validate.git"
+		"url": "https://github.com/saiballo/eleventy-plugin-validate-html.git"
 	}
 }

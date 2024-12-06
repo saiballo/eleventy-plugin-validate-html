@@ -6,7 +6,7 @@
 * Created: 30/11/2024 (19:43:22)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 06/12/2024 (17:56:50)
+* Last update: 06/12/2024 (18:07:42)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -14,8 +14,8 @@
 * Comments:
 */
 
-const doValidation = require("./src/validate.js");
 const getPageList = require("./src/pageList.js");
+const doValidation = require("./src/validate.js");
 const pkg = require("./package.json");
 const toLog = require("./src/log.js");
 
