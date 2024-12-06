@@ -5,6 +5,7 @@
 # eleventy-plugin-validate-html
 
 > A plugin, with options, that runs on the `eleventy.after` event and validates all the files that were built.
+> Inspired by [matt-auckland's plugin](https://github.com/matt-auckland/eleventy-plugin-html-validate)
 
 
 ![](https://img.shields.io/badge/Made%20with%20love%20and%20with-javascript%2C%20node-blue)
