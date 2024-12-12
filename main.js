@@ -1,4 +1,3 @@
-
 /**
 * @preserve
 * Filename: main.js
@@ -6,7 +5,7 @@
 * Created: 30/11/2024 (19:43:22)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 06/12/2024 (18:07:42)
+* Last update: 12/12/2024 (10:47:22)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -20,10 +19,15 @@ const pkg = require("./package.json");
 const toLog = require("./src/log.js");
 
 const defaultConfig = {
+	"extensionList": "htm,html",
 	"validator": "WHATWG",
 	"isLocal": false,
 	"isFragment": false,
-	"extensionList": "htm,html"
+	"ignore": [],
+	"whatwgConfig": {
+		"elements": [],
+		"rules": {}
+	}
 };
 
 module.exports = (eleventyconfig, config = {}) => {

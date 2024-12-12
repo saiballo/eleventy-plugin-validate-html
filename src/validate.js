@@ -5,7 +5,7 @@
 * Created: 30/11/2024 (18:44:22)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 06/12/2024 (18:07:58)
+* Last update: 12/12/2024 (11:03:09)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -15,8 +15,8 @@
 
 "use strict";
 
-const htmlValidator = require("html-validator");
-const fs = require("fs");
+const htmlValidator = require("@saiballo/html-validator-enhanced");
+const fs = require("node:fs");
 const fm = require("front-matter");
 const toLog = require("./log.js");
 
@@ -40,10 +40,28 @@ const getMatterData = (item) => {
 	});
 };
 
+// validator different from WHATWG and format "json" does not accept "ignore" option
+const checkIgnoreOption = (pluginconfig) => {
+
+	const clonedConfig = {
+		...pluginconfig
+	};
+
+	if (clonedConfig["validator"].toLowerCase() !== "whatwg") {
+
+		delete clonedConfig["ignore"];
+	}
+
+	return clonedConfig;
+};
+
+
 const doValidation = async (pageList, pluginconfig) => {
 
 	let checkedTotal = 0;
 	let counterError = 0;
+
+	const pluginConfig = checkIgnoreOption(pluginconfig);
 
 	/* eslint-disable no-await-in-loop */
 	// avoid to send to validator an excessive amount of requests in parallel using await in loop
@@ -63,11 +81,11 @@ const doValidation = async (pageList, pluginconfig) => {
 
 				if (typeof frontMatter["isFragment"] !== "undefined") {
 
-					pluginconfig["isFragment"] = frontMatter["isFragment"];
+					pluginConfig["isFragment"] = frontMatter["isFragment"];
 				}
 
 				const validateConfig = {
-					...pluginconfig,
+					...pluginConfig,
 					// not want user can overwrites format option. must be json
 					"format": "json",
 					"data": fs.readFileSync(page["output"], "utf8")
@@ -77,7 +95,7 @@ const doValidation = async (pageList, pluginconfig) => {
 				const result = await htmlValidator(validateConfig);
 
 				// validator WHATWG
-				if (pluginconfig["validator"] === "WHATWG" && result["isValid"] === false) {
+				if (pluginConfig["validator"].toLowerCase() === "whatwg" && result["isValid"] === false) {
 
 					result["errors"].forEach((item, index) => {
 
@@ -88,7 +106,7 @@ const doValidation = async (pageList, pluginconfig) => {
 				}
 
 				// validator web url
-				if (pluginconfig["validator"] !== "WHATWG" && result["messages"].length > 0) {
+				if (pluginConfig["validator"].toLowerCase() !== "whatwg" && result["messages"].length > 0) {
 
 					result["messages"].forEach((item, index) => {
 
@@ -117,6 +135,8 @@ const doValidation = async (pageList, pluginconfig) => {
 			}
 
 		} catch (err) {
+
+			counterError += 1;
 
 			toLog(err, "error");
 		}

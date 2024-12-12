@@ -1,13 +1,14 @@
 {
 	"name": "@saiballo/eleventy-plugin-validate-html",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A plugin for 11ty which validates your site's pages after build.",
 	"main": "main.js",
 	"keywords": [
 		"11ty",
 		"eleventy",
 		"eleventy-plugin",
-		"html-validator"
+		"html-validator",
+		"@saiballo/html-validator-enhanced"
 	],
 	"license": "MIT",
 	"author": {
@@ -28,14 +29,13 @@
 	"11ty": {
 		"compatibility": ">=2.0.0"
 	},
+	"scripts": {
+		"refresh": "rm -rf node_modules && rm package-lock.json && npm install"
+	},
 	"dependencies": {
 		"deep-extend": "^0.6.0",
 		"front-matter": "^4.0.2",
-		"html-validator-enhanced": "github:saiballo/html-validator-enhanced"
+		"@saiballo/html-validator-enhanced": "^1.0.0"
 
-	},
-	"dependenciesold": {
-		"html-validator-enhanced": "github:saiballo/html-validator-enhanced",
-		"html-validator": "^6.0.1"
 	}
 }

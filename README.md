@@ -24,7 +24,7 @@ Add the plugin to your `eleventy.config.js`:
 const pageValidation = require("@saiballo/eleventy-plugin-validate-html");
 
 module.exports =  function(eleventyConfig) {
-  eleventyConfig.addPlugin(pageValidation)
+	eleventyConfig.addPlugin(pageValidation)
 };
 ```
 
@@ -33,24 +33,32 @@ module.exports =  function(eleventyConfig) {
 By default, the plugin checks all pages with the `.html` or `.htm` extensions. You can add or change extensions by providing a custom configuration. You can use "extensionList" parameter with a list of extensions (without the dot) separated by commas:
 
 ```js
-  eleventyConfig.addPlugin(pageValidation, {
-	  "extensionList":  "ext1,ext2"
-	})
+eleventyConfig.addPlugin(pageValidation, {
+	"extensionList":  "ext1,ext2"
+})
 ```
 
 This plugin relies on [html-validator](https://www.npmjs.com/package/html-validator). This allows you to use some configuration parameters from that package.
 The complete default configuration that you can override is:
 
 ```js
-  eleventyConfig.addPlugin(pageValidation, {
-	  "validator":  "WHATWG",
-	  "isLocal":  false,
-	  "isFragment":  false,
-	  "extensionList":  "htm,html"
-	})
+eleventyConfig.addPlugin(pageValidation, {
+	"extensionList":  "htm,html",
+	"validator":  "WHATWG",
+	"isLocal":  false,
+	"isFragment":  false,
+	"ignore": [],
+	"whatwgConfig": {
+		"elements": [],
+		"rules": {}
+	}
+})
 ```
 #### Parameters
 ```js
+// as previously seen, it is a comma-separated list of extensions to check for validation
+"extensionList":  "htm,html"
+
 // Possible values: "WHATWG" | "https://html5.validator.nu"
 //"WHATWG" is recommended. it will validate against the WHATWG standards.
 "validator":  "WHATWG"
@@ -59,11 +67,36 @@ The complete default configuration that you can override is:
 "isLocal":  false
 
 // set this to true only if all your pages are not a complete document
-// if only certain pages are fragments, you can use "isFragment: true" in these pages as front matter data.
+// if only certain pages are fragments, you can use "isFragment: true" in these pages as front matter data
 "isFragment":  false
 
-// as previously seen, it is a comma-separated list of extensions to check for validation
-"extensionList":  "htm,html"
+// only for "WHATWG" validator. string or array of strings or rules (when using WHATWG) you want the checker to remove in the response. even partial text.
+// e.g. "ignore": ["Mismatched close-tag, expected '</div>' but found '</body>'", "another partial error response text"]
+"ignore": [],
+
+// only for "WHATWG" validator. additional configuration for elements and rules
+"whatwgConfig": {
+	"elements": [],
+	"rules": {}
+}
+```
+## custom WHATWG configuration
+```js
+// with this example, you add a custom tag called "customtag" to the valid tags in the validation. see https://html-validate.org/guide/metadata/simple-component.html
+// additionally, you set the "heading-level" rule to "on" instead of "off". see https://html-validate.org/rules/index.html
+"whatwgConfig": {
+	"elements": [
+		{
+			"customtag": {
+				"flow": true,
+				"phrasing": true
+			}
+		},
+	],
+	"rules": {
+		"heading-level": "error"
+	}
+}
 ```
 ## Front Matter Data
 
