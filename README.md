@@ -13,7 +13,7 @@
 
 ## Installation
 
-Available on [npm](https://www.npmjs.com/package/eleventy-plugin-seo):
+Available on [npm](https://www.npmjs.com/package/@saiballo/eleventy-plugin-validate-html):
 
 ```sh
 npm install @saiballo/eleventy-plugin-validate-html --save
@@ -67,7 +67,7 @@ The complete default configuration that you can override is:
 ```
 ## Front Matter Data
 
-Two parameters can be used as frontmatter data:
+Two parameters can be used as front matter data:
 
 - `validateHtml: true|false` to enable or disable validation for individual pages.
 - `isFragment: true|false` to declare a document as a fragment.
