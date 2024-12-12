@@ -91,7 +91,7 @@ eleventyConfig.addPlugin(pageValidation, {
 				"flow": true,
 				"phrasing": true
 			}
-		},
+		}
 	],
 	"rules": {
 		"heading-level": "error"
