@@ -1,6 +1,6 @@
 {
 	"name": "@saiballo/eleventy-plugin-validate-html",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "A plugin for 11ty which validates your site's pages after build.",
 	"main": "main.js",
 	"keywords": [
@@ -10,6 +10,15 @@
 		"html-validator"
 	],
 	"license": "MIT",
+	"author": {
+		"name": "Lorenzo \"Saibal\" Forti",
+		"email": "lorenzo.forti@gmail.com"
+	},
+	"homepage": "https://github.com/saiballo/eleventy-plugin-validate-html#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/saiballo/eleventy-plugin-validate-html.git"
+	},
 	"bugs": {
 		"url": "https://github.com/saiballo/eleventy-plugin-validate-html"
 	},
@@ -20,15 +29,13 @@
 		"compatibility": ">=2.0.0"
 	},
 	"dependencies": {
-		"html-validator": "^6.0.1",
-		"front-matter": "^4.0.2"
+		"deep-extend": "^0.6.0",
+		"front-matter": "^4.0.2",
+		"html-validator-enhanced": "github:saiballo/html-validator-enhanced"
+
 	},
-	"author": {
-		"name": "Lorenzo \"Saibal\" Forti",
-		"email": "lorenzo.forti@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/saiballo/eleventy-plugin-validate-html.git"
+	"dependenciesold": {
+		"html-validator-enhanced": "github:saiballo/html-validator-enhanced",
+		"html-validator": "^6.0.1"
 	}
 }
