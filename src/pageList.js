@@ -5,7 +5,7 @@
 * Created: 02/12/2024 (19:59:52)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 06/12/2024 (18:08:06)
+* Last update: 13/12/2024 (17:25:18)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -15,24 +15,89 @@
 
 "use strict";
 
-// get only valid extension pages
-const getPageList = (extensionlist, output) => {
+const fs = require("fs").promises;
+const fm = require("front-matter");
+const toLog = require("./log.js");
+
+// get frontmatter data from every template
+const getFrontMatter = async (filePath) => {
+
+	try {
+
+		const fileContent = await fs.readFile(filePath, "utf8");
+		const parsedData = fm(fileContent);
+
+		return parsedData["attributes"];
+
+	} catch (err) {
+
+		toLog(err, "error");
+	}
+};
+
+// get only valid extension pages. used Promise.all() for greater efficiency
+const getPageList = async (extensionlist, output) => {
 
 	const extensionList = extensionlist.split(",").join("|");
-	const pageList = [];
+	const validExtension = new RegExp(`\\.(${extensionList})$`);
 
-	output.results.flatMap((res) => {
+	const promises = output["results"].map(async (res) => {
 
-		if (res.outputPath.match(`^.*\\.(${extensionList})$`) !== null) {
+		if (validExtension.test(res["outputPath"]) === true) {
 
-			pageList.push({
-				"input": res["inputPath"],
-				"output": res["outputPath"]
-			});
+			try {
+
+				const frontMatter = await getFrontMatter(res["inputPath"]);
+				const toValidate = frontMatter["validateHtml"] ?? true;
+
+				if (toValidate === true) {
+
+					return {
+						"input": res["inputPath"],
+						"output": res["outputPath"],
+						"isFragment": frontMatter["isFragment"] ?? null
+					};
+				}
+
+			} catch (err) {
+
+				toLog(err, "error");
+			}
 		}
+
+		return null;
 	});
 
-	return pageList;
+	return (await Promise.all(promises)).filter(Boolean);
 };
+
+// get only valid extension pages. this version has await inside loop. less efficient
+// /* eslint-disable no-await-in-loop */
+// const getPageList = async (extensionlist, output) => {
+
+// 	const extensionList = extensionlist.split(",").join("|");
+// 	const pageList = [];
+
+// 	for (const res of output["results"]) {
+
+// 		if (res["outputPath"].match(`\\.(${extensionList})$`) !== null) {
+
+// 			const frontMatter = await getFrontMatter(res["inputPath"]);
+// 			const toValidate = frontMatter["validateHtml"] ?? true;
+
+// 			if (toValidate === true) {
+
+// 				pageList.push({
+// 					"input": res["inputPath"],
+// 					"output": res["outputPath"],
+// 					"isFragment": frontMatter["isFragment"] ?? null
+// 				});
+// 			}
+// 		}
+// 	}
+
+// 	return pageList;
+// };
+// /* eslint-enable no-await-in-loop */
 
 module["exports"] = getPageList;

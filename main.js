@@ -5,7 +5,7 @@
 * Created: 30/11/2024 (19:43:22)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 12/12/2024 (10:47:22)
+* Last update: 13/12/2024 (17:06:58)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -44,13 +44,13 @@ module.exports = (eleventyconfig, config = {}) => {
 
 		eleventyconfig.versionCheck(pkg["11ty"].compatibility);
 
-		eleventyconfig.on("eleventy.after", (output) => {
+		eleventyconfig.on("eleventy.after", async (output) => {
 
-			const pageList = getPageList(extensionList, output);
+			const pageList = await getPageList(extensionList, output);
 
 			if (Object.keys(pageList).length > 0) {
 
-				doValidation(pageList, pluginConfig);
+				await doValidation(pageList, pluginConfig);
 
 			} else {
 

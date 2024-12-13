@@ -1,6 +1,6 @@
 {
 	"name": "@saiballo/eleventy-plugin-validate-html",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "A plugin for 11ty which validates your site's pages after build.",
 	"main": "main.js",
 	"keywords": [
@@ -18,7 +18,7 @@
 	"homepage": "https://github.com/saiballo/eleventy-plugin-validate-html#readme",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/saiballo/eleventy-plugin-validate-html.git"
+		"url": "git+https://github.com/saiballo/eleventy-plugin-validate-html.git"
 	},
 	"bugs": {
 		"url": "https://github.com/saiballo/eleventy-plugin-validate-html"

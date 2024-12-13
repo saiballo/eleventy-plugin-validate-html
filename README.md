@@ -59,7 +59,7 @@ eleventyConfig.addPlugin(pageValidation, {
 // as previously seen, it is a comma-separated list of extensions to check for validation
 "extensionList":  "htm,html"
 
-// Possible values: "WHATWG" | "https://html5.validator.nu"
+// Possible values: "WHATWG" | "https://validator.w3.org/nu/"
 //"WHATWG" is recommended. it will validate against the WHATWG standards.
 "validator":  "WHATWG"
 
