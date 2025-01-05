@@ -33,9 +33,8 @@
 		"refresh": "rm -rf node_modules && rm package-lock.json && npm install"
 	},
 	"dependencies": {
+		"@saiballo/html-validator-enhanced": "^1.0.0",
 		"deep-extend": "^0.6.0",
-		"front-matter": "^4.0.2",
-		"@saiballo/html-validator-enhanced": "^1.0.0"
-
+		"front-matter": "^4.0.2"
 	}
 }
