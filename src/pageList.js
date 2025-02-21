@@ -5,7 +5,7 @@
 * Created: 02/12/2024 (19:59:52)
 * Created by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
-* Last update: 13/12/2024 (17:25:18)
+* Last update: 24/12/2024 (11:21:24)
 * Updated by: Lorenzo Saibal Forti <lorenzo.forti@gmail.com>
 *
 * Copyleft: 2024 - Tutti i diritti riservati
@@ -15,7 +15,7 @@
 
 "use strict";
 
-const fs = require("fs").promises;
+const fs = require("node:fs").promises;
 const fm = require("front-matter");
 const toLog = require("./log.js");
 
