@@ -1,8 +1,11 @@
 {
-	"compilerOptions": {
-		"checkJs": false
-	},
+	"include": [
+		"**/*.js"
+	],
 	"exclude": [
-		"node_modules"
+		"node_modules",
+		"dist",
+		"_bundler",
+		"0_dev"
 	]
 }
