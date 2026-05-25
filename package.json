@@ -1,6 +1,6 @@
 {
 	"name": "@saiballo/eleventy-plugin-validate-html",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "A plugin for 11ty which validates your site's pages after build.",
 	"main": "main.js",
 	"keywords": [
@@ -33,7 +33,7 @@
 		"refresh": "rm -rf node_modules && rm package-lock.json && npm install"
 	},
 	"dependencies": {
-		"@saiballo/html-validator-enhanced": "^1.0.0",
+		"@saiballo/html-validator-enhanced": "^1.0.3",
 		"deep-extend": "^0.6.0",
 		"front-matter": "^4.0.2"
 	}
