@@ -16,7 +16,7 @@
 Available on [npm](https://www.npmjs.com/package/@saiballo/eleventy-plugin-validate-html):
 
 ```sh
-npm install @saiballo/eleventy-plugin-validate-html --save
+npm install @saiballo/eleventy-plugin-validate-html --save-dev
 ```
 Add the plugin to your `eleventy.config.js`:
 
